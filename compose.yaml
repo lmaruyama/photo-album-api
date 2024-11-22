@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: photoalbum-mysql
+    restart: always
+    image: mysql:8-oracle
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: photoalbum
+      MYSQL_USER: photoalbum-admin
+    ports:
+      - "3307:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - mysql_network
+
+volumes:
+  my-db:
+
+networks:
+  mysql_network:
+    driver: bridge
